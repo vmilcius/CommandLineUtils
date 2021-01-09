@@ -145,5 +145,41 @@ namespace Microsoft.Extensions.Hosting
 
             return state.ExitCode;
         }
+
+        /// <summary>
+        /// Configures an instance of <see cref="IHostBuilder"/> for running a <see cref="CommandLineApplication"/>.
+        /// </summary>
+        /// <typeparam name="TApp"></typeparam>
+        /// <param name="hostBuilder"></param>
+        /// <param name="args"></param>
+        /// <param name="applicationState"></param>
+        /// <returns></returns>
+        public static IHostBuilder ConfigureCommandLineApplication<TApp>(
+            this IHostBuilder hostBuilder,
+            string[] args,
+            out CommandLineState applicationState)
+            where TApp : class
+        {
+            var state = new CommandLineState(args);
+
+            hostBuilder.ConfigureServices((_, services) =>
+            {
+                services.AddSingleton(PhysicalConsole.Singleton);
+
+                services.TryAddSingleton(provider =>
+                {
+                    state.SetConsole(provider.GetRequiredService<IConsole>());
+                    return state;
+                });
+
+                services
+                    .AddSingleton<IHostLifetime, CommandLineLifetime>()
+                    .AddSingleton<CommandLineContext>(state)
+                    .AddSingleton<ICommandLineService, CommandLineService<TApp>>();
+            });
+
+            applicationState = state;
+            return hostBuilder;
+        }
     }
 }

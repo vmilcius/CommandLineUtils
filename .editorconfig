@@ -85,3 +85,6 @@ dotnet_naming_rule.private_fields_should_be_underscore.severity        = error
 
 # File header
 file_header_template = Copyright (c) Nate McMaster.\nLicensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = none

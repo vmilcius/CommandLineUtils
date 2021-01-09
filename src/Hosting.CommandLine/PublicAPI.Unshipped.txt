@@ -1,1 +1,6 @@
 #nullable enable
+McMaster.Extensions.Hosting.CommandLine.Internal.CommandLineState
+McMaster.Extensions.Hosting.CommandLine.Internal.CommandLineState.CommandLineState(string![]! args) -> void
+McMaster.Extensions.Hosting.CommandLine.Internal.CommandLineState.ExitCode.get -> int
+McMaster.Extensions.Hosting.CommandLine.Internal.CommandLineState.ExitCode.set -> void
+static Microsoft.Extensions.Hosting.HostBuilderExtensions.ConfigureCommandLineApplication<TApp>(this Microsoft.Extensions.Hosting.IHostBuilder! hostBuilder, string![]! args, out McMaster.Extensions.Hosting.CommandLine.Internal.CommandLineState! applicationState) -> Microsoft.Extensions.Hosting.IHostBuilder!

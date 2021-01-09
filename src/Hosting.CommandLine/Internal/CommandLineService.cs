@@ -39,10 +39,10 @@ namespace McMaster.Extensions.Hosting.CommandLine.Internal
             _application.Conventions
                 .UseDefaultConventions()
                 .UseConstructorInjection(serviceProvider);
+
             foreach (var convention in serviceProvider.GetServices<IConvention>())
             {
                 _application.Conventions.AddConvention(convention);
-
             }
 
             configure(_application);

@@ -1,18 +1,19 @@
 // Copyright (c) Nate McMaster.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
-
-using System;
-using System.Runtime.ExceptionServices;
-using System.Threading;
-using System.Threading.Tasks;
-using McMaster.Extensions.CommandLineUtils;
-using Microsoft.Extensions.Hosting;
+#nullable enable
 
 namespace McMaster.Extensions.Hosting.CommandLine.Internal
 {
+    using System;
+    using System.Runtime.ExceptionServices;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using CommandLineUtils;
+    using Microsoft.Extensions.Hosting;
+
     /// <summary>
-    ///     Waits from completion of the <see cref="CommandLineApplication" /> and
-    ///     initiates shutdown.
+    /// Waits from completion of the <see cref="CommandLineApplication" /> and
+    /// initiates shutdown.
     /// </summary>
     internal class CommandLineLifetime : IHostLifetime, IDisposable
     {
@@ -24,7 +25,8 @@ namespace McMaster.Extensions.Hosting.CommandLine.Internal
         /// <summary>
         ///     Creates a new instance.
         /// </summary>
-        public CommandLineLifetime(IApplicationLifetime applicationLifetime,
+        public CommandLineLifetime(
+            IApplicationLifetime applicationLifetime,
             ICommandLineService cliService,
             IConsole console,
             IUnhandledExceptionHandler? unhandledExceptionHandler = null)
